@@ -39,17 +39,27 @@
 	</div>
 	<dialog>
 		<form>
-			<fieldset>
 				<legend>New Todo</legend>
 				<div class="todo-input">
-					<input type="text">
+					<input name = "title" type="text">
+				</div>
+				<div class = "todo-description">
+					<input name = "description" type = "text">
 				</div>
 				<div class="todo-date">
 					<label for="dueDate">Date due</label>
-					<input type="date" id="dueDAte">
+					<input name = "date" type="date" id="dueDAte">
+				</div>
+				<div class="todo-priority">
+					<label for="priority">Priority</label>
+					<select name="priority" id="priority">
+						<option value="Mild">Mild</option>
+						<option value="Moderate">Moderate</option>
+						<option value="High">High</option>
+						<option value="Extreme">Extreme</option>
+					</select>
 				</div>
 				<button type="submit" class = "submit">Add Todo</button>
-			</fieldset>
 		</form>
 	</dialog>
 </body>

@@ -1,11 +1,14 @@
 
-//import STORAGE from "./STORAGE.js"; 
+import STORAGE from "./STORAGE.js"; 
 
 const DOM = (function(){
 
+
 	const renderHome = function(){
 		const mainContent = document.querySelector(".main-content");
-		const homeTodos = [];     //STORAGE.loadHomeTodos(); 	//this should return an empty list if theres no todos in local storage, then the "add-todo" button will be appended to the top.
+		mainContent.innerHTML = "";
+		const homeTodos = STORAGE.loadHomeTodos(); 	//this should return an empty list if theres no todos in local storage, then the "add-todo" button will be appended to the top.
+		console.log(homeTodos);
 		for (let i = 0; i < homeTodos.length; i++) {
 			const parentTodoDiv = document.createElement("div");
 			parentTodoDiv.id = `${homeTodos[i].id}`;
@@ -27,17 +30,21 @@ const DOM = (function(){
   			const selectedTodo = clickedButton.parentElement;
 				if (selectedTodo) {
 					selectedTodo.remove();
+					console.log(selectedTodo.id);
 					STORAGE.removeTodo(`${selectedTodo.id}`);
 				};
 			});
 		});
-
-		const addTodoDiv = document.createElement("button");
-		addTodoDiv.textContent = "New Todo";
-		addTodoDiv.onclick = function() {
-			document.querySelector("dialog").showModal();
+		
+		if (document.querySelector(".add-button") === null) {
+			const addTodoDiv = document.createElement("button");
+			addTodoDiv.classname = "add-button";
+			addTodoDiv.textContent = "New Todo";
+			addTodoDiv.onclick = function() {
+				document.querySelector("dialog").showModal();
+			};
+			mainContent.append(addTodoDiv);
 		};
-		mainContent.append(addTodoDiv);
 	};
 	
 	return {renderHome};
