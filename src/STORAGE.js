@@ -1,7 +1,7 @@
 const STORAGE = (function () {
 	
 	const postTodo = function(todoObj) {
-		const todos = JSON.parse(localStorage.getItem("userTodos"));
+		const todos = JSON.parse(localStorage.getItem("userTodos")) || [];
 		todos.push(todoObj);
 		localStorage.setItem("userTodos", JSON.stringify(todos));
 	}

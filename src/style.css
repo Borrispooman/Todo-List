@@ -29,19 +29,28 @@ header{
 	flex-direction: column;
 	justify-content: start;
 	align-items: start;
-	gap: 20px;
+	gap: 40px;
 	padding: 20px;
 	border-bottom-left-radius: 1.5em;
 }
 .main-content{
 	background-color:whitesmoke;
 	border-bottom-right-radius: 1.5em;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-left: 80px;
+	padding-right: 80px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
 }
 .main-nav{
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
 	align-items: start;
+	gap: 15px;
 }
 .main-nav-child{
 	display: flex;
@@ -53,6 +62,47 @@ header{
 	width: 10px;
 	height: 10px;
 }
-header, .side-bar, .main-content{
+header, .side-bar {
 	padding: 20px;
+}
+.todo-div{
+	width: 80%;
+	height:7%;
+	display: flex;
+	justify-content: baseline;
+	align-items: center;
+	gap: 20px;
+	padding: 20px;
+	border-radius: 5px;
+}
+.todo-div button{
+	height: 22px;
+	width: 22px;
+	border-radius: 50%;
+	border-width: 2px;
+	border-style: solid;
+}
+.todo-div:hover{
+	background-color:lightgrey;
+}
+.todo-name{
+	font-weight: 600;
+	margin-right: 70%;
+}
+.add-button{
+	width: 80%;
+	height: 7%;
+	display: flex;
+	justify-content: baseline;
+	align-items: center;
+	padding: 10px;
+	font-weight: 700;
+	border-radius: 5px;
+}
+.add-button:hover{
+	background-color: lightgrey;
+}
+.add-button svg{
+	height: 70%;
+	width: 5%;
 }
