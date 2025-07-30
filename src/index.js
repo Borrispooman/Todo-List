@@ -5,9 +5,27 @@ import DOM from "./DOM.js";
 import STORAGE from "./STORAGE.js";
 
 DOM.renderHome();
-const homeTab = document.querySelector("#homeTab");
+const homeTab = document.getElementById("homeTab");
+const todayTab = document.getElementById("todayTab");
+const weekTab = document.getElementById("weekTab"); 
+
 homeTab.addEventListener("click", function() {
 	DOM.renderHome();
+	homeTab.style.backgroundColor="lightgrey";
+	todayTab.style.backgroundColor="#EEEEEE";
+	weekTab.style.backgroundColor = "#EEEEEE";
+});
+todayTab.addEventListener("click", function() {
+	DOM.renderToday();
+	todayTab.style.backgroundColor="lightgrey";
+	homeTab.style.backgroundColor = "#EEEEEE";
+	weekTab.style.backgroundColor = "#EEEEEE";
+});
+weekTab.addEventListener("click", function() {
+	DOM.renderWeek();
+	todayTab.style.backgroundColor="#EEEEEE";
+	homeTab.style.backgroundColor = "#EEEEEE";
+	weekTab.style.backgroundColor = "lightgrey";
 });
 
 document.querySelector("#addForm form").addEventListener("submit", event => {

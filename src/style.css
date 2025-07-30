@@ -42,7 +42,7 @@ header h1{
 	border-bottom-right-radius: 1.5em;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	padding-left: 80px;
+	padding-left: 160px;
 	padding-right: 80px;
 	display: flex;
 	flex-direction: column;
@@ -79,19 +79,19 @@ header h1{
 header, .side-bar {
 	padding: 20px;
 }
-.todo-div{
-	width: 80%;
-	height:7%;
-	display: flex;
-	justify-content: baseline;
-	align-items: center;
-	gap: 20px;
-	padding: 20px;
-	border-radius: 5px;
+.todo-div {
+  width: 80%;
+  display: grid;
+  grid-template-columns: auto 1fr auto; 
+  align-items: center;
+  gap: 1rem;              
+  padding: 0.5rem 1rem;   
+  border-radius: 5px;
 }
 .todo-div button{
 	height: 22px;
 	width: 22px;
+	margin: 0px;
 	border-radius: 50%;
 	border-width: 2px;
 	border-style: solid;
@@ -100,8 +100,11 @@ header, .side-bar {
 	background-color:lightgrey;
 }
 .todo-name{
+	display: flex;
+	justify-content: baseline;
+	align-items: center;
 	font-weight: 600;
-	margin-right: 70%;
+	width: 70%;
 }
 .add-button{
 	position: relative;

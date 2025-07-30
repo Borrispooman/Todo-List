@@ -8,6 +8,11 @@ const DOM = (function(){
 	const renderHome = function(){
 		const mainContent = document.querySelector(".main-content");
 		mainContent.innerHTML = "";
+		const heading =  document.createElement("h1");
+		heading.textContent = 'Home';
+		heading.className = "content-heading";
+		mainContent.append(heading);
+
 		const homeTodos = STORAGE.loadHomeTodos() || []; 	//this should return an empty list if theres no todos in local storage, then the "add-todo" button will be appended to the top.
 		console.log(homeTodos);
 		for (let i = 0; i < homeTodos.length; i++) {
@@ -73,8 +78,91 @@ const DOM = (function(){
 
 		};
 	};
+
+	const renderToday = function(){
+		const mainContent = document.querySelector(".main-content");
+		mainContent.innerHTML = "";
+
+		const heading =  document.createElement("h1");
+		heading.textContent = 'Today';
+		heading.className = "content-heading";
+		mainContent.append(heading);
+		const todayTodos = STORAGE.loadTodayTodos() || []; 	//this should return an empty list if theres no todos in local storage, then the "add-todo" button will be appended to the top.
+		console.log(todayTodos);
+		for (let i = 0; i < todayTodos.length; i++) {
+			const parentTodoDiv = document.createElement("div");
+			parentTodoDiv.id = `${todayTodos[i].id}`;
+			parentTodoDiv.className = "todo-div";
+			const titleDiv = document.createElement("div"); 
+			titleDiv.textContent = `${todayTodos[i].title}`;
+			titleDiv.className = "todo-name";
+			const checkButton = document.createElement("button");
+			checkButton.className = "check-button"
+			const dateDiv = document.createElement("div");
+			dateDiv.textContent = `${todayTodos[i].dueDate}`;
+			parentTodoDiv.append( checkButton, titleDiv, dateDiv);
+			mainContent.append(parentTodoDiv);
+		};		
+
+		const checkButtons = document.querySelectorAll(".check-button");
+		checkButtons.forEach((button) => {
+			button.addEventListener("click", function(event) {
+				const clickedButton = event.target;
+  			const selectedTodo = clickedButton.parentElement;
+				if (selectedTodo) {
+					selectedTodo.remove();
+					console.log(selectedTodo.id);
+					STORAGE.removeTodo(`${selectedTodo.id}`);
+				};
+			});
+		});
+
+	}
 	
-	return {renderHome};
+	const renderWeek = function(){
+		const mainContent = document.querySelector(".main-content");
+		mainContent.innerHTML = "";
+
+		const heading =  document.createElement("h1");
+		heading.textContent = 'This Week';
+		heading.className = "content-heading";
+		mainContent.append(heading);
+		const weekTodos = STORAGE.loadWeekTodos() || []; 	
+		for (let i = 0; i < weekTodos.length; i++) {
+			const parentTodoDiv = document.createElement("div");
+			parentTodoDiv.id = `${weekTodos[i].id}`;
+			parentTodoDiv.className = "todo-div";
+			const titleDiv = document.createElement("div"); 
+			titleDiv.textContent = `${weekTodos[i].title}`;
+			titleDiv.className = "todo-name";
+			const checkButton = document.createElement("button");
+			checkButton.className = "check-button"
+			const dateDiv = document.createElement("div");
+			dateDiv.textContent = `${weekTodos[i].dueDate}`;
+			parentTodoDiv.append( checkButton, titleDiv, dateDiv);
+			mainContent.append(parentTodoDiv);
+		};
+
+
+
+		const checkButtons = document.querySelectorAll(".check-button");
+		checkButtons.forEach((button) => {
+			button.addEventListener("click", function(event) {
+				const clickedButton = event.target;
+  			const selectedTodo = clickedButton.parentElement;
+				if (selectedTodo) {
+					selectedTodo.remove();
+					console.log(selectedTodo.id);
+					STORAGE.removeTodo(`${selectedTodo.id}`);
+				};
+			});
+		});
+
+	};
+
+		
+	
+	return {renderHome, renderToday, renderWeek};
 })();
 
 export default DOM;
