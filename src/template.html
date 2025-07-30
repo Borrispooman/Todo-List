@@ -3,6 +3,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class = "outer-container">
@@ -39,27 +42,16 @@
 	</div>
 	<div id="addForm" popover="manual">
 		<form>
-				<legend>New Todo</legend>
-				<div class="todo-input">
-					<input name = "title" type="text">
+				<div class="todo-input" id="form-child">
+					<label for="todo">Todo</label>
+					<input name = "title" id="todo" type="text">
 				</div>
-				<div class = "todo-description">
-					<input name = "description" type = "text">
-				</div>
-				<div class="todo-date">
+				<div class="todo-date"id="form-child">
 					<label for="dueDate">Date due</label>
 					<input name = "date" type="date" id="dueDAte">
 				</div>
-				<div class="todo-priority">
-					<label for="priority">Priority</label>
-					<select name="priority" id="priority">
-						<option value="Mild">Mild</option>
-						<option value="Moderate">Moderate</option>
-						<option value="High">High</option>
-						<option value="Extreme">Extreme</option>
-					</select>
-				</div>
 				<button type="submit" class = "submit">Add Todo</button>
+				<button class = "cancel">Cancel</button>
 		</form>
 	</div>
 </body>

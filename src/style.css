@@ -19,9 +19,13 @@ header{
 	grid-column: span 2;
 	background-color:lightgrey;
 	color:black;
-	padding: 10px;
+	padding: 20px;
 	border-top-right-radius: 1.5em;
 	border-top-left-radius: 1.5em;
+}
+header h1{
+	font-family: "Sour Gummy", sans-serif;
+	font-size:40px;
 }
 .side-bar{
 	background-color: #EEEEEE;
@@ -100,6 +104,7 @@ header, .side-bar {
 	margin-right: 70%;
 }
 .add-button{
+	position: relative;
 	width: 80%;
 	height: 7%;
 	display: flex;
@@ -116,9 +121,46 @@ header, .side-bar {
 	height: 70%;
 	width: 5%;
 }
+#addForm.open{
+	display:flex;
+	flex-direction: column;	
+	align-items: center;
+	justify-content: center;
+}
 #addForm{
+	display: none; /* hidden by default */
+	position: absolute;
+	top: 100%;
+  left: 0;
 	border-style:none;
 	border-radius: 5px;
 	padding: 5px;
-	background-color:grey;
-};
+	background-color:#EEEEEE;
+	padding: 10px;
+	width: 56.55%;
+}
+form{
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}
+#form-child{
+	display:flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+}
+.submit{
+	border-style: none;
+	border-radius:5px;
+	background-color: lightgreen;
+}
+.cancel{
+	border-style: none;
+	border-radius:5px;
+	background-color: lightcoral;
+}
+
+

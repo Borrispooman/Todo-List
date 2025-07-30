@@ -55,18 +55,22 @@ const DOM = (function(){
 			addTodoDiv.append(icon, textContainer);
 			const popover = document.querySelector('#addForm');
 			addTodoDiv.addEventListener('click', () => {
-				if (popover.matches(':popover-open')) {
-					popover.hidePopover();
-				} else {
-					// Position it right under the trigger
-					const rect = addTodoDiv.getBoundingClientRect();
-					popover.style.position = 'absolute';
-					popover.style.top = `${rect.bottom + window.scrollY}px`;
-					popover.style.left = `${rect.left + window.scrollX}px`;
-					popover.showPopover();
-				}
-			});
+					if (popover.classList.contains('open')) {
+							popover.classList.remove('open');
+							addTodoDiv.style.visibility = '';
+					} else {
+							const rect = addTodoDiv.getBoundingClientRect();
+							popover.style.position = 'absolute';
+							popover.style.top = `${rect.top + window.scrollY}px`;
+							popover.style.left = `${rect.left + window.scrollX}px`;
+							popover.style.width = `${rect.width}px`;
+							popover.style.height = `${rect.height}px`;
+							addTodoDiv.style.visibility = 'hidden';
+							popover.classList.add('open');
+					}
+			});		
 			mainContent.append(addTodoDiv);
+
 		};
 	};
 	

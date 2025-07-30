@@ -1,3 +1,3 @@
-export function createTodo(title, description, dueDate, priority) {
-	return {title, description, dueDate, priority, id:crypto.randomUUID()};
+export function createTodo(title,  dueDate,) {
+	return {title,  dueDate, id:crypto.randomUUID()};
 };

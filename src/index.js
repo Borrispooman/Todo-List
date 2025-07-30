@@ -10,17 +10,26 @@ homeTab.addEventListener("click", function() {
 	DOM.renderHome();
 });
 
-document.querySelector("form").addEventListener("submit", event => {
+document.querySelector("#addForm form").addEventListener("submit", event => {
   event.preventDefault();
-	console.log(event.target);
 	var formData = new FormData(event.target);
-	const newTodo = createTodo(formData.get("title"), formData.get("description"), formData.get("date"), formData.get("priority") );
+	const newTodo = createTodo(formData.get("title"),  formData.get("date") );
 	STORAGE.postTodo(newTodo);
-	const popover = document.querySelector('#addForm');
-	popover.hidePopover();	
+
+  const popover = document.querySelector('#addForm');
+  const addTodoDiv = document.querySelector('.add-button'); // your trigger
+	addTodoDiv.style.visibility = '';
+	popover.classList.remove("open");
 	DOM.renderHome();
-	console.log(STORAGE.loadHomeTodos());
 });
+
+document.querySelector(".cancel").addEventListener("click", e => {
+	e.preventDefault()
+	const popover = document.querySelector('#addForm');
+	popover.classList.remove("open");
+	DOM.renderHome();
+});
+
 
 document.querySelectorAll("input").forEach(input => {
   input.addEventListener("keydown", e => {
@@ -31,7 +40,4 @@ document.querySelectorAll("input").forEach(input => {
 });
 
 
-console.log("hello, world");
 
-const newTodo = createTodo("jirk off", "masturbate only once a week", "Daily", "Mild");
-console.log(newTodo);
