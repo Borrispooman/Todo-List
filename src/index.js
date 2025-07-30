@@ -16,7 +16,8 @@ document.querySelector("form").addEventListener("submit", event => {
 	var formData = new FormData(event.target);
 	const newTodo = createTodo(formData.get("title"), formData.get("description"), formData.get("date"), formData.get("priority") );
 	STORAGE.postTodo(newTodo);
-	document.querySelector("dialog").close();
+	const popover = document.querySelector('#addForm');
+	popover.hidePopover();	
 	DOM.renderHome();
 	console.log(STORAGE.loadHomeTodos());
 });
@@ -24,7 +25,7 @@ document.querySelector("form").addEventListener("submit", event => {
 document.querySelectorAll("input").forEach(input => {
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Stops Enter from submitting
+      e.preventDefault();
     }
   });
 });

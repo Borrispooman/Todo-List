@@ -41,19 +41,31 @@ const DOM = (function(){
 		if (document.querySelector(".add-button") === null) {
 			const addTodoDiv = document.createElement("div");
 			addTodoDiv.className = "add-button";
+			addTodoDiv.setAttribute("role", "button");
+			addTodoDiv.tabIndex = "0";
+			addTodoDiv.setAttribute("popovertarget", "addForm");
 			const textContainer = document.createElement("div");
 			textContainer.textContent = "New Todo";
 			const svgNS = "http://www.w3.org/2000/svg"
-
 			const icon = document.createElementNS(svgNS, "svg");
 			icon.setAttribute("viewBox", "0 0 24 24"); 
 			const iconPath = document.createElementNS(svgNS, "path");
 			iconPath.setAttribute("d", "M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z");
 			icon.append(iconPath);
 			addTodoDiv.append(icon, textContainer);
-			addTodoDiv.onclick = function() {
-				document.querySelector("dialog").showModal();
-			};
+			const popover = document.querySelector('#addForm');
+			addTodoDiv.addEventListener('click', () => {
+				if (popover.matches(':popover-open')) {
+					popover.hidePopover();
+				} else {
+					// Position it right under the trigger
+					const rect = addTodoDiv.getBoundingClientRect();
+					popover.style.position = 'absolute';
+					popover.style.top = `${rect.bottom + window.scrollY}px`;
+					popover.style.left = `${rect.left + window.scrollX}px`;
+					popover.showPopover();
+				}
+			});
 			mainContent.append(addTodoDiv);
 		};
 	};
