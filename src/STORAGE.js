@@ -1,6 +1,5 @@
 
 const STORAGE = (function () {
-	
 	const postTodo = function(todoObj) {
 		const todos = JSON.parse(localStorage.getItem("userTodos")) || [];
 		todos.push(todoObj);
@@ -69,7 +68,71 @@ const STORAGE = (function () {
 		};
 	};
 
-	return {postTodo, loadHomeTodos, loadWeekTodos, removeTodo, loadTodayTodos};
+	const postNewProject = function(proj){
+		const projects = (JSON.parse(localStorage.getItem("projects"))) || [];
+		projects.push(proj);
+		localStorage.setItem("projects", JSON.stringify(projects));
+		console.log(proj);
+	}
+
+	const postProjectTodo = function (todoObj, proj){
+		const projects = (JSON.parse(localStorage.getItem("projects")));
+		console.log(projects);
+		for(let i = 0; i < projects.length; i++){
+			if(projects[i].name === proj){
+				(projects[i].todos ??=[]).push(todoObj);
+				console.log(projects[i].todos);
+			};
+		};
+		localStorage.setItem("projects", JSON.stringify(projects));
+	};
+
+	const removeProjectTodo = function (id, proj){
+
+		console.log(id);
+		const projects = (JSON.parse(localStorage.getItem("projects")));
+		
+		for(let i = 0; i < projects.length; i++){
+			if(projects[i].name == proj){
+					console.log("removeProjectTodo: matched name");
+					const todos = projects[i].todos
+					for(let j = 0; j<todos.length; j++){
+						if (todos[j].id === id){
+							todos.splice(j, 1);
+							projects[i].todos = todos;
+						};
+					};
+			};
+		};
+
+		localStorage.setItem("projects", JSON.stringify(projects));
+	};
+
+	const loadProjects = function(){
+		const projects = (JSON.parse(localStorage.getItem("projects"))) || [];
+		return projects;
+	};
+
+	const loadProjectTodos = function(projName){
+		const projects = (JSON.parse(localStorage.getItem("projects")));
+		for(let i = 0; i<projects.length; i++){
+			if(projects[i].name === projName){
+				return (projects[i].todos)
+			}
+		};
+	};
+
+	return {postTodo,
+		loadHomeTodos, 
+		loadWeekTodos, 
+		removeTodo, 
+		loadTodayTodos,
+		postNewProject,
+		postProjectTodo,
+		removeProjectTodo,
+		loadProjectTodos,
+		loadProjects
+	};
 })();
 
 export default STORAGE;

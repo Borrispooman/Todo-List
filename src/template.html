@@ -35,6 +35,14 @@
 				</nav>
 				<nav class="projects">
 					<h2>Projects</h2>
+					<div class="new-project">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+							<path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
+						</svg>	
+						<h3>New Project</h3>
+					</div>
+					<div class="projects-container">
+					</div>
 				</nav>
 		</div>
 		<div class="main-content">
@@ -54,5 +62,32 @@
 				<button class = "cancel">Cancel</button>
 		</form>
 	</div>
+
+	<div id="newProjectForm" popover = "manual">
+		<form>
+				<div class = "name-input">
+					<label for ="projName">Name</label>	
+					<input name = "projName">
+				</div>
+				<button type = "submit" class="proj-submit">Add</button>
+				<button class = "new-proj-cancel">Cancel</button>
+		</form>
+	</div>	
+
+	<div id="projectAddForm" popover="manual">
+		<form>
+				<div class="todo-input" id="form-child">
+					<label for="todo">Todo</label>
+					<input name = "title" id="todo" type="text">
+				</div>
+				<div class="todo-date"id="form-child">
+					<label for="dueDate">Date due</label>
+					<input name = "date" type="date" id="dueDAte">
+				</div>
+				<button type="submit" class = "submit">Add Todo</button>
+				<button type="button" class = "projCancel">Cancel</button>
+		</form>
+	</div>
+
 </body>
 </html>
